@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { COLORS } from '../../theme';
 
 type Props = {
   title: string;
@@ -18,19 +19,19 @@ const StyledButtonContainer = styled.div`
 
 const StyledButton = styled.button`
   padding: 7px 24.5px 7.5px 24.5px;
-  background: #006dff;
-  border: 2px solid #006dff;
+  background: ${COLORS.primary};
+  border: 2px solid;
   box-sizing: border-box;
   border-radius: 8px;
   color: #fff;
   cursor: pointer;
   transition-duration: 0.6s;
   &:hover {
-    background-color: #8e00ff;
-    border: 2px solid #8e00ff;
+    background-color: ${COLORS.secondary};
+    border-color: ${COLORS.secondary};
   }
   &:focus {
-    background-color: #8e00ff;
+    background-color: ${COLORS.secondary};
   }
 `;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { COLORS } from '../../theme';
 
 type Props = {
   title: string;
@@ -12,14 +13,13 @@ type Props = {
 const StyledTab = styled.button`
   padding: 9px 24px 5px 24px;
   border: 0;
-  background-color: transparent;
-  border-bottom: 4px solid transparent;
+  background-color: ${COLORS.none};
+  border-bottom: 4px solid ${COLORS.none};
   font-size: 17px;
   cursor: pointer;
   transition-duration: 0.6s;
-  &:hover,
   &[aria-selected='true'] {
-    border-color: #8e00ff;
+    border-color: ${COLORS.secondary};
   }
 `;
 

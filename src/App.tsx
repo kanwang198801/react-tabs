@@ -16,8 +16,8 @@ const StyledContainer = styled.div`
 const App: React.FC = () => {
   return (
     <StyledContainer>
-      <Tabs ariaLabel="Tab1">
-        <TabPane id="tincidunt" title="Tincidunt">
+      <Tabs id="tab1">
+        <TabPane id="tab1-tincidunt" title="Tincidunt">
           <h3>Donec vitae</h3>
           <p>
             Ut tincidunt tincidunt erat. Fusce convallis metus id felis luctus adipiscing. Vivamus quis mi. Nullam vel
@@ -29,7 +29,7 @@ const App: React.FC = () => {
             tempor auctor, justo.
           </p>
         </TabPane>
-        <TabPane id="sodales" title="Sodales">
+        <TabPane id="tab1-sodales" title="Sodales">
           <h3>Donec sodales sagittis</h3>
           <p>
             Maecenas vestibulum mollis diam.. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique
@@ -38,8 +38,8 @@ const App: React.FC = () => {
           </p>
         </TabPane>
       </Tabs>
-      <Tabs ariaLabel="Tab2" defaultActiveTabIndex={1}>
-        <TabPane id="tincidunt" title="Tincidunt">
+      <Tabs id="tab2" defaultActiveTabIndex={1}>
+        <TabPane id="tab2-tincidunt" title="Tincidunt">
           <h3>Donec vitae</h3>
           <p>
             Ut tincidunt tincidunt erat. Fusce convallis metus id felis luctus adipiscing. Vivamus quis mi. Nullam vel
@@ -51,7 +51,7 @@ const App: React.FC = () => {
             tempor auctor, justo.
           </p>
         </TabPane>
-        <TabPane id="sodales" title="Sodales">
+        <TabPane id="tab2-sodales" title="Sodales">
           <h3>Donec sodales sagittis</h3>
           <p>
             Maecenas vestibulum mollis diam.. Proin viverra, ligula sit amet ultrices semper, ligula arcu tristique
