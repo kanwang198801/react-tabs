@@ -8,6 +8,7 @@ type Props = {
   tabIndex: number;
   activeTabIndex: number;
   setActiveTabIndex: (index: number) => void;
+  tabRef: any;
 };
 
 const StyledTab = styled.button`
@@ -17,13 +18,15 @@ const StyledTab = styled.button`
   border-bottom: 4px solid ${COLORS.none};
   font-size: 17px;
   cursor: pointer;
-  transition-duration: 0.6s;
+  &:focus-visible {
+    outline: ${COLORS.secondary} auto 1px;
+  }
   &[aria-selected='true'] {
     border-color: ${COLORS.secondary};
   }
 `;
 
-const Tab: React.FC<Props> = ({ title, id, tabIndex, activeTabIndex, setActiveTabIndex }) => {
+const Tab: React.FC<Props> = ({ title, id, tabIndex, activeTabIndex, setActiveTabIndex, tabRef }) => {
   const isCurrentTab = activeTabIndex === tabIndex;
   const onClick = () => {
     setActiveTabIndex(tabIndex);
@@ -37,6 +40,7 @@ const Tab: React.FC<Props> = ({ title, id, tabIndex, activeTabIndex, setActiveTa
       aria-controls={`${id}-tab`}
       tabIndex={isCurrentTab ? 0 : 1}
       onClick={onClick}
+      ref={tabRef}
     >
       {title}
     </StyledTab>

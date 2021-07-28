@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { COLORS } from '../../theme';
 
 type Props = {
   id: string;
@@ -8,6 +9,9 @@ type Props = {
 
 const StyledTabPane = styled.div`
   padding: 24px;
+  :focus-visible {
+    outline: ${COLORS.secondary} auto 1px;
+  }
 `;
 
 const TabPane: React.FC<Props> = ({ children, id }) => {

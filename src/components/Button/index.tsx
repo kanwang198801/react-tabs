@@ -20,7 +20,7 @@ const StyledButtonContainer = styled.div`
 const StyledButton = styled.button`
   padding: 7px 24.5px 7.5px 24.5px;
   background: ${COLORS.primary};
-  border: 2px solid;
+  border: 2px solid ${COLORS.primary};
   box-sizing: border-box;
   border-radius: 8px;
   color: #fff;

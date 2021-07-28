@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useRef } from 'react';
 import Tab from './Tab';
 import styled from 'styled-components';
 import { COLORS } from '../../theme';
@@ -7,6 +7,7 @@ type Props = {
   children: ReactElement[];
   defaultActiveTabIndex?: number;
   id: string;
+  ariaLabel: string;
 };
 
 const StyledTabs = styled.div`
@@ -20,12 +21,35 @@ const StyledTabList = styled.div`
   border-bottom: 1px solid ${COLORS.grey};
 `;
 
-const Tabs: React.FC<Props> = ({ children, defaultActiveTabIndex = 0, id }) => {
+const Tabs: React.FC<Props> = ({ children, id, ariaLabel, defaultActiveTabIndex = 0 }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(defaultActiveTabIndex);
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  const tabRefs = children.map(() => useRef<HTMLDivElement>(null!));
+
+  const handleKeyPress = (event: React.KeyboardEvent) => {
+    const firstIndex = 0;
+    const lastIndex = tabRefs.length - 1;
+    let nextIndex = activeTabIndex - 1;
+    if (event.key === 'ArrowLeft') {
+      if (activeTabIndex === firstIndex) {
+        nextIndex = lastIndex;
+      }
+    } else if (event.key === 'ArrowRight') {
+      if (activeTabIndex === lastIndex) {
+        nextIndex = firstIndex;
+      } else {
+        nextIndex = activeTabIndex + 1;
+      }
+    } else {
+      return;
+    }
+    tabRefs[nextIndex].current.focus();
+    setActiveTabIndex(nextIndex);
+  };
 
   return (
     <StyledTabs id={id} className="tabs">
-      <StyledTabList role="tablist" aria-label={id}>
+      <StyledTabList role="tablist" aria-label={ariaLabel} onKeyDown={handleKeyPress}>
         {children.map((item, index) => (
           <Tab
             id={item.props.id}
@@ -34,6 +58,7 @@ const Tabs: React.FC<Props> = ({ children, defaultActiveTabIndex = 0, id }) => {
             tabIndex={index}
             activeTabIndex={activeTabIndex}
             setActiveTabIndex={setActiveTabIndex}
+            tabRef={tabRefs[index]}
           />
         ))}
       </StyledTabList>

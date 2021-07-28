@@ -16,7 +16,7 @@ const StyledContainer = styled.div`
 const App: React.FC = () => {
   return (
     <StyledContainer>
-      <Tabs id="tab1">
+      <Tabs id="tab1" ariaLabel="Tab 1">
         <TabPane id="tab1-tincidunt" title="Tincidunt">
           <h3>Donec vitae</h3>
           <p>
@@ -38,7 +38,7 @@ const App: React.FC = () => {
           </p>
         </TabPane>
       </Tabs>
-      <Tabs id="tab2" defaultActiveTabIndex={1}>
+      <Tabs id="tab2" ariaLabel="Tab 2" defaultActiveTabIndex={1}>
         <TabPane id="tab2-tincidunt" title="Tincidunt">
           <h3>Donec vitae</h3>
           <p>
