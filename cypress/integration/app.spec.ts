@@ -36,14 +36,18 @@ describe('Main page', () => {
   });
   it('left arrow should work correctly', () => {
     cy.get('button#tab1-tincidunt').focus().type('{leftarrow}');
+    cy.get('button#tab1-sodales').focused();
     cy.get('#tab1-sodales-tab').should('exist');
     cy.get('button#tab1-sodales').focus().type('{leftarrow}');
+    cy.get('button#tab1-tincidunt').focused();
     cy.get('#tab1-tincidunt-tab').should('exist');
   });
   it('right arrow should work correctly', () => {
     cy.get('button#tab1-tincidunt').focus().type('{rightarrow}');
+    cy.get('button#tab1-sodales').focused();
     cy.get('#tab1-sodales-tab').should('exist');
     cy.get('button#tab1-sodales').focus().type('{rightarrow}');
+    cy.get('button#tab1-tincidunt').focused();
     cy.get('#tab1-tincidunt-tab').should('exist');
   });
   it('tab key should work correctly', () => {
