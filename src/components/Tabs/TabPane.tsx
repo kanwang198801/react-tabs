@@ -9,8 +9,8 @@ type Props = {
 
 const StyledTabPane = styled.div`
   padding: 24px;
-  :focus-visible {
-    outline: ${COLORS.secondary} auto 1px;
+  :focus {
+    outline: ${COLORS.secondary} solid 1px;
   }
 `;
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Ref } from 'react';
 import styled from 'styled-components';
 import { COLORS } from '../../theme';
 
@@ -8,7 +8,8 @@ type Props = {
   tabIndex: number;
   activeTabIndex: number;
   setActiveTabIndex: (index: number) => void;
-  tabRef: any;
+  onKeyUp: (event: React.KeyboardEvent) => void;
+  tabRef: Ref<HTMLButtonElement>;
 };
 
 const StyledTab = styled.button`
@@ -18,19 +19,13 @@ const StyledTab = styled.button`
   border-bottom: 4px solid ${COLORS.none};
   font-size: 17px;
   cursor: pointer;
-  &:focus-visible {
-    outline: ${COLORS.secondary} auto 1px;
-  }
   &[aria-selected='true'] {
     border-color: ${COLORS.secondary};
   }
 `;
 
-const Tab: React.FC<Props> = ({ title, id, tabIndex, activeTabIndex, setActiveTabIndex, tabRef }) => {
+const Tab: React.FC<Props> = ({ title, id, tabIndex, activeTabIndex, setActiveTabIndex, onKeyUp, tabRef }) => {
   const isCurrentTab = activeTabIndex === tabIndex;
-  const onClick = () => {
-    setActiveTabIndex(tabIndex);
-  };
 
   return (
     <StyledTab
@@ -39,8 +34,10 @@ const Tab: React.FC<Props> = ({ title, id, tabIndex, activeTabIndex, setActiveTa
       aria-selected={isCurrentTab}
       aria-controls={`${id}-tab`}
       tabIndex={isCurrentTab ? 0 : 1}
-      onClick={onClick}
+      onClick={() => setActiveTabIndex(tabIndex)}
+      onKeyUp={(e) => onKeyUp(e)}
       ref={tabRef}
+      data-orientation="horizontal"
     >
       {title}
     </StyledTab>

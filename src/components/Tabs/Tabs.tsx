@@ -23,10 +23,9 @@ const StyledTabList = styled.div`
 
 const Tabs: React.FC<Props> = ({ children, id, ariaLabel, defaultActiveTabIndex = 0 }) => {
   const [activeTabIndex, setActiveTabIndex] = useState(defaultActiveTabIndex);
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const tabRefs = children.map(() => useRef<HTMLDivElement>(null!));
+  const tabRefs = children.map(() => useRef<HTMLButtonElement>(null!));
 
-  const handleKeyPress = (event: React.KeyboardEvent) => {
+  const onKeyUpEvent = (event: React.KeyboardEvent) => {
     const firstIndex = 0;
     const lastIndex = tabRefs.length - 1;
     let nextIndex = activeTabIndex - 1;
@@ -49,7 +48,7 @@ const Tabs: React.FC<Props> = ({ children, id, ariaLabel, defaultActiveTabIndex 
 
   return (
     <StyledTabs id={id} className="tabs">
-      <StyledTabList role="tablist" aria-label={ariaLabel} onKeyDown={handleKeyPress}>
+      <StyledTabList role="tablist" aria-label={ariaLabel}>
         {children.map((item, index) => (
           <Tab
             id={item.props.id}
@@ -57,8 +56,9 @@ const Tabs: React.FC<Props> = ({ children, id, ariaLabel, defaultActiveTabIndex 
             title={item.props.title}
             tabIndex={index}
             activeTabIndex={activeTabIndex}
-            setActiveTabIndex={setActiveTabIndex}
             tabRef={tabRefs[index]}
+            setActiveTabIndex={setActiveTabIndex}
+            onKeyUp={onKeyUpEvent}
           />
         ))}
       </StyledTabList>
